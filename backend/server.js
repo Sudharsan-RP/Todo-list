@@ -37,6 +37,7 @@ app.post('/todo', async(req, res) => {
     await todo.save();
 
     res.status(201).json({
+      todo,
       message: 'todo added successfully'
     })
     
@@ -45,8 +46,49 @@ app.post('/todo', async(req, res) => {
       message: error.message
     })
   }
+});
+
+app.get('/todo', async(req, res) => {
+  try {
+    const todo = await Todo.find();
+    res.status(200).json({
+      todo
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: 'failed data fetching'
+    })
+  }
 })
+
+app.delete('/todo/:id', async (req, res) => {
+  try {
+    const removeItem = await Todo.findByIdAndDelete(req.params.id);
+    if (!removeItem) {
+      return res.status(404).json({ message: 'Todo not found' });
+    }
+    res.status(200).json({ message: 'Todo removed successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting todo', error });
+  }
+});
+
+app.put('/todo/:id', async (req, res) => {
+  try {
+    const { todoText, todoDate } = req.body
+    const updateItem = await Todo.findByIdAndUpdate(req.params.id, { todoText, todoDate }, { new: true })
+    if(!updateItem) {
+      return res.status(404).json({ message: 'todo not found' })
+    }
+    res.status(200).json({ updateItem, message: 'updated successfully' })
+  } catch (error) {
+    res.status(500).json({
+      message: 'update failed'
+    })
+  }
+})
+
 
 app.listen(3000, () => {
   console.log(`server running on port http://localhost:${3000}`)
-})
+});

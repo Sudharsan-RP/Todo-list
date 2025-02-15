@@ -4,15 +4,15 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 .container {
   background-color: #1e1e1e;
   color: #ffd700;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-  width: 400px;
+  box-shadow: 4px 4px 20px rgb(252, 255, 60);
+  min-width: 500px;
   text-align: center;
 }
 input, button {
@@ -36,6 +36,11 @@ input, button {
   color: white;
   cursor: pointer;
 }
+.edit-btn {
+  background-color: #02f2fa46;
+  color: white;
+  cursor: pointer;
+}
 .todo-item {
   display: flex;
   justify-content: space-between;
@@ -45,4 +50,47 @@ input, button {
   margin-top: 10px;
   border-radius: 5px;
   color: white;
+  letter-spacing: 1.2px;
+}
+
+.todo-item span {
+  font-size: 18px;
+  text-transform: capitalize;
+  
+}
+
+.input {
+  display: flex;
+  gap: 20px;
+}
+
+.line {
+  text-decoration: line-through black 3px;
+  transition: all 1s ease;
+}
+
+.container input:hover {
+  background-color: #cfc8c8;
+}
+
+.container input:focus {
+  background-color: transparent;
+  color: white;
+}
+
+.container input::placeholder {
+  font-weight: 500;
+  font-size: 15px;
+  color: #1e1e1e;
+}
+
+.container input {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.container button {
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  color: #ffffff;
 }
