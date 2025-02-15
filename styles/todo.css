@@ -43,6 +43,7 @@ input, button {
 }
 .todo-item {
   display: flex;
+  gap: 20px;
   justify-content: space-between;
   align-items: center;
   background-color: #333;
